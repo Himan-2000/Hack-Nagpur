@@ -23,7 +23,7 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <Router>
         <Switch>
-          <Route path="/login">
+          <Route path="/">
             <LogIn />
           </Route>
           <Route path="/register">
