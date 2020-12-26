@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://Galatz:Healthcare123@cluster0.wmcay.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "jwtSecret": "Hethgala"
+}
