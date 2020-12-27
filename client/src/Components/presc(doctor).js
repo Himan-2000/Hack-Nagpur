@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function Prescribe() {
+export default function Prescribe(props) {
     const classes = useStyles();
     const [info, setInfo] = useState({
         title: '',
@@ -42,6 +42,44 @@ export default function Prescribe() {
         allergies: '',
         medication: ''
     })
+
+    const [currentUser, setCurrentUser] = useState()
+
+    useEffect(() => {
+        const currentuser_channel = props.pusher.subscribe('user');
+        currentuser_channel.bind(`${localStorage.getItem('userId')}`, function (data) {
+            setCurrentUser(data)
+            console.log(data)
+            localStorage.setItem('currentPatient', data._id)
+            localStorage.setItem('patientsNo', data.contact)
+        })
+
+        return () => {
+            props.pusher.unsubscribe('user')
+        }
+    }, [])
+
+    const getUserdetails = async () => {
+        var data = JSON.stringify({ "contact": localStorage.getItem('patientsNo') });
+
+        var config = {
+            method: 'post',
+            url: 'https://health-care-auto.herokuapp.com/api/user/findUser',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+        const response = await axios(config)
+        console.log(response.data)
+        setCurrentUser(response.data.user)
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem('patientsNo')) {
+            getUserdetails()
+        }
+    }, [])
 
     const { analysis, advice, allergies, medication, title } = info
 
@@ -55,7 +93,7 @@ export default function Prescribe() {
                     "title": title,
                     "details": dataLink
                 },
-                "userId": "5fe70ff01ef5120017067fbc"
+                "userId": localStorage.getItem('currentPatient')
             });
 
             var config = {
@@ -71,6 +109,10 @@ export default function Prescribe() {
             const response = await axios(config)
             console.log(response.data)
 
+            if (response) {
+                //toast to show ke data is uploaded
+            }
+
         } catch (error) {
             // toast daal de ider
         }
@@ -83,10 +125,19 @@ export default function Prescribe() {
         let doc = new jsPDF();
         // console.log(doc.output('blob'))
 
-        doc.setFontSize(40)
+        doc.setFontSize(20)
         doc.text(50, 25, 'Secure Health')
-        doc.addImage(Img, 'pdf', 50, 35, 120, 100)
-        // doc.text()
+        doc.addImage(Img, 'pdf', 50, 35, 80, 10)
+        doc.setFontSize(10)
+        doc.text(50, 50, `Patient's Name: ${currentUser.name}`)
+        doc.text(50, 55, `Age: ${currentUser.age}`)
+        doc.text(50, 60, `Doctor's Report`)
+        doc.text(50, 65, `Analysis: ${analysis}`)
+        doc.text(50, 70, `Suggestions: ${advice}`)
+        doc.text(50, 75, `Allergies: ${allergies}`)
+        doc.text(50, 80, `Suggested Medications ${medication}`)
+        doc.text(50, 90, `${localStorage.getItem('username')}`)
+        doc.text(50, 95, `Your Doctor`)
         const hell = doc.save('prescription.pdf')
         console.log(hell.output('blob'))
         const sen = hell.output('blob')
@@ -105,10 +156,10 @@ export default function Prescribe() {
 
     return (
         <Container>
-            <Paper className={classes.root}>
+            {currentUser && <Paper className={classes.root}>
                 <Typography variant="h5" style={{ "textAlign": "center", "paddingTop": "50px", "fontWeight": "bold" }}>
-                    Prescription For Mr. Heth Gala
-            </Typography>
+                    Prescription For Mr. {currentUser.name}
+                </Typography>
                 <Divider />
                 <form className={classes.form} noValidate autoComplete="off">
                     <TextField multiline='true' onChange={onChange} variant='outlined' rows={1} id="standard-basic" name="title" value={title} label="Title" style={{ "width": "800px" }} /><br /><br />
@@ -127,10 +178,7 @@ export default function Prescribe() {
                         Submit
           </Button>
                 </form>
-            </Paper>
-            <div id="hell">
-                Hello
-            </div>
+            </Paper>}
 
         </Container>
     );

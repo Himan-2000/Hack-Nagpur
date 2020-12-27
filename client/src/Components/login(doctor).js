@@ -48,8 +48,8 @@ export default function LogIn() {
     email: '',
     password: ''
   })
-  const [alert,setAlert]=useState(false);
-  const [alert1,setAlert1]=useState(false);
+  const [alert, setAlert] = useState(false);
+  const [alert1, setAlert1] = useState(false);
 
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   let history = useHistory()
@@ -72,28 +72,28 @@ export default function LogIn() {
     }
     else {
       var data = JSON.stringify({ email, password });
-      try{
-      var config = {
-        method: 'post',
-        url: 'https://health-care-auto.herokuapp.com/api/doctor/login',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data: data
-      };
-      const response = await axios(config)
-      localStorage.setItem('userId', response.data.doctor._id)
-      localStorage.setItem('username', response.data.doctor.name)
-      localStorage.setItem('token', response.data.token)
+      try {
+        var config = {
+          method: 'post',
+          url: 'https://health-care-auto.herokuapp.com/api/doctor/login',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: data
+        };
+        const response = await axios(config)
+        localStorage.setItem('userId', response.data.doctor._id)
+        localStorage.setItem('username', response.data.doctor.name)
+        localStorage.setItem('token', response.data.token)
 
-      console.log(response.data)
-      setIsAuthenticated(true)
+        console.log(response.data)
+        setIsAuthenticated(true)
+      }
+      catch (error) {
+        //Something wentr wrong 
+        setAlert1(true)
+      }
     }
-    catch (error) {
-      //Something wentr wrong 
-      setAlert1(true)
-    }
-  }
 
 
   }
