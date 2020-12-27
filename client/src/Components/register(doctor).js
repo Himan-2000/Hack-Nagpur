@@ -12,6 +12,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Link from '@material-ui/core/Link';
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +50,9 @@ export default function Register() {
     specialization: ''
   })
 
+  const [alert,setAlert]=useState(false);
+  const [alert1,setAlert1]=useState(false);
+
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   let history = useHistory()
@@ -59,8 +68,9 @@ export default function Register() {
 
   const onSubmit = async e => {
     e.preventDefault();
-    if (email === '' || password === '') {
+    if (email === '' || password === '' || name==='') {
       // M.toast({ html: `Please fill in all fields to login successfully!` });
+      setAlert(true);
     }
     else {
       var data = JSON.stringify({ name, email, password, Specialization: specialization });
@@ -85,11 +95,27 @@ export default function Register() {
 
       } catch (error) {
         //Something wentr wrong 
+        setAlert1(true)
       }
     }
 
   }
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setAlert(false);
+  };
+
+  const handleClose1 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setAlert1(false);
+  };
 
   const classes = useStyles();
 
@@ -144,7 +170,6 @@ export default function Register() {
             <TextField
               variant="outlined"
               margin="normal"
-              required
               fullWidth
               name="specialization"
               label="Specialization"
@@ -168,6 +193,16 @@ export default function Register() {
           </Link>
         </CardContent>
       </Card>
+      <Snackbar open={alert} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error">
+          Please fill in all the required details!
+        </Alert>
+      </Snackbar>
+      <Snackbar open={alert1} autoHideDuration={6000} onClose={handleClose1}>
+        <Alert onClose={handleClose1} severity="error">
+          Something Went Wrong!
+        </Alert>
+      </Snackbar>
     </Container>
   );
 }
