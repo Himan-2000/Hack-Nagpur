@@ -6,6 +6,7 @@ import Navbar from './Components/navbar';
 import LogIn from './Components/login(doctor)';
 import Prescribe from './Components/presc(doctor)';
 import Register from './Components/register(doctor)';
+import Userpresc from './Components/userpresc';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const theme = createMuiTheme({
@@ -32,6 +33,10 @@ function App() {
             <Route path="/prescribe">
               <Navbar />
               <Prescribe />
+            </Route>
+            <Route path="/userpresc">
+              <Navbar />
+              <Userpresc />
             </Route>
           </Switch>
         </Router>
