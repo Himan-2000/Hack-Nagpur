@@ -158,13 +158,10 @@ function Prescription(props) {
   }
   return (
     <React.Fragment>
-      {currentUser &&
-        <div><Typography variant="h5" style={{ "fontWeight": "bold", "marginTop": "20px", "marginLeft": "20px" }}>Patient - {name}</Typography><br />
-          <Grid container spacing={5}>
-            {displayPresc()}
-          </Grid>
-        </div>
-      }
+      <Typography variant="h5" style={{ "fontWeight": "bold", "marginTop": "20px", "marginLeft": "20px" }}>Patient - {name}</Typography><br />
+      <Grid container spacing={5}>
+        {displayPresc()}
+      </Grid>
     </React.Fragment>
   );
 }
@@ -268,19 +265,13 @@ function Reports(props) {
   );
 }
 
-export default function Userpresc(props) {
+export default function Userpresc() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [hell, setHell] = React.useState()
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  useEffect(() => {
-    console.log(props)
-    setHell(props)
-  }, [])
 
   return (
     <Paper className={classes.root} elevation={0} variant="outlined">
