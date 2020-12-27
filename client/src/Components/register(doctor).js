@@ -82,7 +82,6 @@ export default function Register() {
         if (response) {
           setIsAuthenticated(true)
         }
-
       } catch (error) {
         //Something wentr wrong 
       }
