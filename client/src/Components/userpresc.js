@@ -78,6 +78,7 @@ function Prescription(props) {
       console.log(data)
       localStorage.setItem('currentPatient', data._id)
       localStorage.setItem('patientsNo', data.contact)
+      getUserdetails()
     })
 
     return () => {
@@ -86,6 +87,7 @@ function Prescription(props) {
   }, [])
 
   const getUserdetails = async () => {
+    console.log(localStorage.getItem('patientsNo'))
     var data = JSON.stringify({ "contact": localStorage.getItem('patientsNo') });
 
     var config = {
@@ -99,6 +101,16 @@ function Prescription(props) {
     const response = await axios(config)
     console.log(response.data)
     setCurrentUser(response.data.user)
+    axios
+      .get(`https://health-care-auto.herokuapp.com/api/user/${localStorage.getItem('patientsNo')}`)
+      .then(async (json) => {
+        let mydata = json.data;
+        console.log('test');
+        console.log(mydata);
+        setData(mydata.userPrescriptions);
+        setCount(mydata.noOfPrescriptions);
+        setName(mydata.user.name);
+      });
   }
 
   useEffect(() => {
@@ -157,23 +169,60 @@ function Prescription(props) {
   );
 }
 
-function Reports() {
+function Reports(props) {
   const classes = useStyles();
   const [data, setData] = useState([]);
   const [count, setCount] = useState();
   const [name, setName] = useState("");
+  const [currentUser, setCurrentUser] = useState()
+
   useEffect(() => {
+    const currentuser_channel = props.hell.pusher.subscribe('user');
+    currentuser_channel.bind(`${localStorage.getItem('userId')}`, function (data) {
+      setCurrentUser(data)
+      console.log(data)
+      localStorage.setItem('currentPatient', data._id)
+      localStorage.setItem('patientsNo', data.contact)
+      getUserdetails()
+    })
+
+    return () => {
+      props.hell.pusher.unsubscribe('user')
+    }
+  }, [])
+
+  const getUserdetails = async () => {
+    console.log(localStorage.getItem('patientsNo'))
+    var data = JSON.stringify({ "contact": localStorage.getItem('patientsNo') });
+
+    var config = {
+      method: 'post',
+      url: 'https://health-care-auto.herokuapp.com/api/user/findUser',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+    const response = await axios(config)
+    console.log(response.data)
+    setCurrentUser(response.data.user)
     axios
-      .get('https://health-care-auto.herokuapp.com/api/user/8850356911')
+      .get(`https://health-care-auto.herokuapp.com/api/user/${localStorage.getItem('patientsNo')}`)
       .then(async (json) => {
         let mydata = json.data;
         console.log('test');
         console.log(mydata);
-        setData(mydata.userReports);
-        setCount(mydata.noOfReports);
+        setData(mydata.userPrescriptions);
+        setCount(mydata.noOfPrescriptions);
         setName(mydata.user.name);
       });
-  }, []);
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem('patientsNo')) {
+      getUserdetails()
+    }
+  }, [])
 
   const displayReps = () => {
     console.log(count);
@@ -241,10 +290,10 @@ export default function Userpresc(props) {
         <Tab label="Reports" style={{ "fontWeight": "bold" }} {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Prescription hell={hell} />
+        {hell && <Prescription hell={hell} />}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Reports />
+        {hell && <Reports hell={hell} />}
       </TabPanel>
     </Paper>
   );
