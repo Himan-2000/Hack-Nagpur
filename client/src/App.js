@@ -49,7 +49,7 @@ function App() {
             </Route>
             <Route path="/userpresc">
               <Navbar />
-              <Userpresc />
+              <Userpresc pusher={pusher} />
             </Route>
           </Switch>
         </Router>

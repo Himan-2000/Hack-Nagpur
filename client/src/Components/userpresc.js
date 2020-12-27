@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -58,82 +58,110 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    marginTop:"100px",
-    marginLeft:"280px",
-    marginRight:"20px"
+    marginTop: "100px",
+    marginLeft: "280px",
+    marginRight: "20px"
   },
 }));
 
-function Prescription(){
-    const classes = useStyles();
-    const [data, setData] = useState([]);
-    const [count, setCount]=useState();
-    const [name, setName]=useState("");
-    useEffect(() => {
-      axios
-        .get('https://health-care-auto.herokuapp.com/api/user/8850356911')
-        .then(async (json) => {
-          let mydata = json.data;
-          console.log('test');
-          console.log(mydata);
-          setData(mydata.userPrescriptions);
-          setCount(mydata.noOfPrescriptions);
-          setName(mydata.user.name);
-        });
-    }, []);
-
-    const displayPresc= () =>{
-      console.log(count);
-      return data.map((presc,index)=>{
-        return(
-<Grid item xs={4}>
-          <Card className={classes.card} elevation={0} variant="outlined">
-              <CardContent>
-                  <Typography>
-                  <span style={{"fontWeight":"bold"}}>No.</span><span>-{index+1}</span>
-                  </Typography>
-                  <Typography>
-                  <span style={{"fontWeight":"bold"}}>Doctor</span><span>-{presc.doctor.name}</span>
-                  </Typography>
-                  <Typography>
-                  <span style={{"fontWeight":"bold"}}>Specialization</span><span>-{presc.doctor.Specialization}</span>
-                  </Typography>
-                  <Typography>
-                  <span style={{"fontWeight":"bold"}}>Date</span><span>-{presc.date.slice(0,10)}</span>
-                  </Typography>
-              </CardContent>
-              <CardActions>
-        <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        endIcon={<FileCopyIcon></FileCopyIcon>}
-        onClick={() => {window.open(`${presc.details}`)}}
-        disableElevation
-      >
-        View
-      </Button>
-      </CardActions>
-          </Card>
-        </Grid>
-        );
-      })
-    }
-    return(
-    <React.Fragment>
-      <Typography variant="h5" style={{"fontWeight":"bold","marginTop":"20px","marginLeft":"20px"}}>Patient - {name}</Typography><br /> 
-        <Grid container spacing={5}>
-        {displayPresc()}
-        </Grid>
-    </React.Fragment>
-    );
-}
-
-function Reports(){
+function Prescription(props) {
   const classes = useStyles();
   const [data, setData] = useState([]);
-  const [count, setCount]=useState();
-  const [name, setName]=useState("");
+  const [count, setCount] = useState();
+  const [name, setName] = useState("");
+  const [currentUser, setCurrentUser] = useState()
+
+  useEffect(() => {
+    const currentuser_channel = props.hell.pusher.subscribe('user');
+    currentuser_channel.bind(`${localStorage.getItem('userId')}`, function (data) {
+      setCurrentUser(data)
+      console.log(data)
+      localStorage.setItem('currentPatient', data._id)
+      localStorage.setItem('patientsNo', data.contact)
+    })
+
+    return () => {
+      props.hell.pusher.unsubscribe('user')
+    }
+  }, [])
+
+  const getUserdetails = async () => {
+    var data = JSON.stringify({ "contact": localStorage.getItem('patientsNo') });
+
+    var config = {
+      method: 'post',
+      url: 'https://health-care-auto.herokuapp.com/api/user/findUser',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
+    const response = await axios(config)
+    console.log(response.data)
+    setCurrentUser(response.data.user)
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem('patientsNo')) {
+      getUserdetails()
+    }
+  }, [])
+
+  const displayPresc = () => {
+    console.log(count);
+    return data.map((presc, index) => {
+      return (
+        <Grid item xs={4}>
+          <Card className={classes.card} elevation={0} variant="outlined">
+            <CardContent>
+              <Typography>
+                <span style={{ "fontWeight": "bold" }}>No.</span><span>-{index + 1}</span>
+              </Typography>
+              <Typography>
+                <span style={{ "fontWeight": "bold" }}>Doctor</span><span>-{presc.doctor.name}</span>
+              </Typography>
+              <Typography>
+                <span style={{ "fontWeight": "bold" }}>Specialization</span><span>-{presc.doctor.Specialization}</span>
+              </Typography>
+              <Typography>
+                <span style={{ "fontWeight": "bold" }}>Date</span><span>-{presc.date.slice(0, 10)}</span>
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                endIcon={<FileCopyIcon></FileCopyIcon>}
+                onClick={() => { window.open(`${presc.details}`) }}
+                disableElevation
+              >
+                View
+      </Button>
+            </CardActions>
+          </Card>
+        </Grid>
+      );
+    })
+  }
+  return (
+    <React.Fragment>
+      {currentUser &&
+        <div><Typography variant="h5" style={{ "fontWeight": "bold", "marginTop": "20px", "marginLeft": "20px" }}>Patient - {name}</Typography><br />
+          <Grid container spacing={5}>
+            {displayPresc()}
+          </Grid>
+        </div>
+      }
+    </React.Fragment>
+  );
+}
+
+function Reports() {
+  const classes = useStyles();
+  const [data, setData] = useState([]);
+  const [count, setCount] = useState();
+  const [name, setName] = useState("");
   useEffect(() => {
     axios
       .get('https://health-care-auto.herokuapp.com/api/user/8850356911')
@@ -147,67 +175,73 @@ function Reports(){
       });
   }, []);
 
-  const displayReps= () =>{
+  const displayReps = () => {
     console.log(count);
-    return data.map((rep,index)=>{
-      return(
-<Grid item xs={4}>
-        <Card className={classes.card} elevation={0} variant="outlined">
+    return data.map((rep, index) => {
+      return (
+        <Grid item xs={4}>
+          <Card className={classes.card} elevation={0} variant="outlined">
             <CardContent>
-                <Typography>
-                <span style={{"fontWeight":"bold"}}>No.</span><span>-{index+1}</span>
-                </Typography>
-                <Typography>
-                <span style={{"fontWeight":"bold"}}>Title</span><span>-{rep.title}</span>
-                </Typography>
-                <Typography>
-                <span style={{"fontWeight":"bold"}}>Date</span><span>-{rep.date.slice(0,10)}</span>
-                </Typography>
+              <Typography>
+                <span style={{ "fontWeight": "bold" }}>No.</span><span>-{index + 1}</span>
+              </Typography>
+              <Typography>
+                <span style={{ "fontWeight": "bold" }}>Title</span><span>-{rep.title}</span>
+              </Typography>
+              <Typography>
+                <span style={{ "fontWeight": "bold" }}>Date</span><span>-{rep.date.slice(0, 10)}</span>
+              </Typography>
             </CardContent>
             <CardActions>
-      <Button
-      variant="contained"
-      color="primary"
-      className={classes.button}
-      endIcon={<FileCopyIcon></FileCopyIcon>}
-      onClick={() => {window.open(`${rep.file}`)}}
-      disableElevation
-    >
-      View
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                endIcon={<FileCopyIcon></FileCopyIcon>}
+                onClick={() => { window.open(`${rep.file}`) }}
+                disableElevation
+              >
+                View
     </Button>
-    </CardActions>
-        </Card>
-      </Grid>
+            </CardActions>
+          </Card>
+        </Grid>
       );
     })
   }
-  return(
-  <React.Fragment>
-    <Typography variant="h5" style={{"fontWeight":"bold","marginTop":"20px","marginLeft":"20px"}}>Patient - {name}</Typography><br />
+  return (
+    <React.Fragment>
+      <Typography variant="h5" style={{ "fontWeight": "bold", "marginTop": "20px", "marginLeft": "20px" }}>Patient - {name}</Typography><br />
       <Grid container spacing={5}>
-      {displayReps()}
+        {displayReps()}
       </Grid>
-  </React.Fragment>
+    </React.Fragment>
   );
 }
 
-export default function Userpresc() {
+export default function Userpresc(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [hell, setHell] = React.useState()
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  useEffect(() => {
+    console.log(props)
+    setHell(props)
+  }, [])
+
   return (
     <Paper className={classes.root} elevation={0} variant="outlined">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" indicatorColor="primary"
-        textColor="primary" style={{"marginLeft":"40px","marginTop":"20px"}}>
-          <Tab label="Prescriptions" style={{"fontWeight":"bold"}} {...a11yProps(0)} />
-          <Tab label="Reports" style={{"fontWeight":"bold"}} {...a11yProps(1)} />
-        </Tabs>
+      <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" indicatorColor="primary"
+        textColor="primary" style={{ "marginLeft": "40px", "marginTop": "20px" }}>
+        <Tab label="Prescriptions" style={{ "fontWeight": "bold" }} {...a11yProps(0)} />
+        <Tab label="Reports" style={{ "fontWeight": "bold" }} {...a11yProps(1)} />
+      </Tabs>
       <TabPanel value={value} index={0}>
-          <Prescription />
+        <Prescription hell={hell} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Reports />
