@@ -15,6 +15,12 @@ import jsPDF from 'jspdf'
 import Img from './images/bg.jpg'
 import firebase from './firebase'
 import axios from 'axios'
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,7 +47,8 @@ export default function Prescribe(props) {
         advice: '',
         allergies: '',
         medication: ''
-    })
+    });
+    const [alert, setAlert] = useState(false);
 
     const [currentUser, setCurrentUser] = useState()
 
@@ -85,6 +92,14 @@ export default function Prescribe(props) {
 
     const onChange = e => setInfo({ ...info, [e.target.name]: e.target.value })
 
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setAlert(false);
+    };
+
     const sendToDb = async (dataLink) => {
         try {
             var data = JSON.stringify({
@@ -115,6 +130,7 @@ export default function Prescribe(props) {
 
         } catch (error) {
             // toast daal de ider
+            setAlert(true);
         }
     }
 

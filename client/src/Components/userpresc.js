@@ -68,6 +68,7 @@ function Prescription(){
     const classes = useStyles();
     const [data, setData] = useState([]);
     const [count, setCount]=useState();
+    const [name, setName]=useState("");
     useEffect(() => {
       axios
         .get('https://health-care-auto.herokuapp.com/api/user/8850356911')
@@ -77,6 +78,7 @@ function Prescription(){
           console.log(mydata);
           setData(mydata.userPrescriptions);
           setCount(mydata.noOfPrescriptions);
+          setName(mydata.user.name);
         });
     }, []);
 
@@ -119,6 +121,7 @@ function Prescription(){
     }
     return(
     <React.Fragment>
+      <Typography variant="h5" style={{"fontWeight":"bold","marginTop":"20px","marginLeft":"20px"}}>Patient - {name}</Typography><br /> 
         <Grid container spacing={5}>
         {displayPresc()}
         </Grid>
@@ -130,6 +133,7 @@ function Reports(){
   const classes = useStyles();
   const [data, setData] = useState([]);
   const [count, setCount]=useState();
+  const [name, setName]=useState("");
   useEffect(() => {
     axios
       .get('https://health-care-auto.herokuapp.com/api/user/8850356911')
@@ -139,6 +143,7 @@ function Reports(){
         console.log(mydata);
         setData(mydata.userReports);
         setCount(mydata.noOfReports);
+        setName(mydata.user.name);
       });
   }, []);
 
@@ -178,6 +183,7 @@ function Reports(){
   }
   return(
   <React.Fragment>
+    <Typography variant="h5" style={{"fontWeight":"bold","marginTop":"20px","marginLeft":"20px"}}>Patient - {name}</Typography><br />
       <Grid container spacing={5}>
       {displayReps()}
       </Grid>
@@ -195,7 +201,6 @@ export default function Userpresc() {
 
   return (
     <Paper className={classes.root} elevation={0} variant="outlined">
-      <Typography variant="h5" style={{"fontWeight":"bold","marginTop":"20px","marginLeft":"20px"}}>Patient Name</Typography>
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" indicatorColor="primary"
         textColor="primary" style={{"marginLeft":"40px","marginTop":"20px"}}>
           <Tab label="Prescriptions" style={{"fontWeight":"bold"}} {...a11yProps(0)} />
