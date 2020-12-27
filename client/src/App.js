@@ -8,6 +8,7 @@ import Prescribe from './Components/presc(doctor)';
 import Register from './Components/register(doctor)';
 import Userpresc from './Components/userpresc';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from './Components/home';
 
 const theme = createMuiTheme({
   palette: {
@@ -29,6 +30,10 @@ function App() {
             </Route>
             <Route path="/register">
               <Register />
+            </Route>
+            <Route path="/home">
+              <Navbar />
+              <Home />
             </Route>
             <Route path="/prescribe">
               <Navbar />
