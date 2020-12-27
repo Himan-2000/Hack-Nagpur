@@ -265,13 +265,20 @@ function Reports(props) {
   );
 }
 
-export default function Userpresc() {
+export default function Userpresc(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
+  const [hell, setHell] = useState()
+
   const handleChange = (event, newValue) => {
+
     setValue(newValue);
   };
+
+  useEffect(() => {
+    setHell(props)
+  }, [])
 
   return (
     <Paper className={classes.root} elevation={0} variant="outlined">
