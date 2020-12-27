@@ -35,17 +35,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles();
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios
-      .get('https://health-care-auto.herokuapp.com/api/doctor/doc/getDoctor')
-      .then(async (json) => {
-        let mydata = json.data;
-        console.log('test');
-        console.log(mydata);
-        setData(mydata);
-      });
-  }, []);
 
   return (
     <Paper className={classes.root} elevation={0} variant="outlined">
