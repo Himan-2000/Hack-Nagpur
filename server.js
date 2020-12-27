@@ -21,6 +21,9 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.use('/api/user', require('./routes/users'));
+app.use('/api/doctor', require('./routes/doctor'));
+app.use('/api/report', require('./routes/report'));
+
 
 app.listen(PORT, () => {
     console.log(`Listening to post ${PORT}`)
