@@ -11,6 +11,7 @@ import Home from './Components/home';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Pusher from 'pusher-js';
 import react, { useState, useEffect } from 'react';
+import UserDiaryDetails from './Components/UserDiaryDetails';
 
 const theme = createMuiTheme({
   palette: {
@@ -55,6 +56,10 @@ function App() {
             <Route path="/userpresc">
               <Navbar />
               <Userpresc pusher={pusher} />
+            </Route>
+            <Route path="/userDairyDetails">
+              {/* <Navbar /> */}
+              <UserDiaryDetails />
             </Route>
           </Switch>
         </Router>

@@ -52,19 +52,19 @@ export default function Prescribe(props) {
 
     const [currentUser, setCurrentUser] = useState()
 
-    useEffect(() => {
-        const currentuser_channel = props.pusher.subscribe('user');
-        currentuser_channel.bind(`${localStorage.getItem('userId')}`, function (data) {
-            setCurrentUser(data)
-            console.log(data)
-            localStorage.setItem('currentPatient', data._id)
-            localStorage.setItem('patientsNo', data.contact)
-        })
+    // useEffect(() => {
+    //     const currentuser_channel = props.pusher.subscribe('user');
+    //     currentuser_channel.bind(`${localStorage.getItem('userId')}`, function (data) {
+    //         setCurrentUser(data)
+    //         console.log(data)
+    //         localStorage.setItem('currentPatient', data._id)
+    //         localStorage.setItem('patientsNo', data.contact)
+    //     })
 
-        return () => {
-            props.pusher.unsubscribe('user')
-        }
-    }, [])
+    //     return () => {
+    //         props.pusher.unsubscribe('user')
+    //     }
+    // }, [])
 
     const getUserdetails = async () => {
         var data = JSON.stringify({ "contact": localStorage.getItem('patientsNo') });
