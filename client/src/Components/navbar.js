@@ -13,6 +13,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import BorderColorIcon from '@material-ui/icons/BorderColor';
+import HomeIcon from '@material-ui/icons/Home';
+import { NavLink } from 'react-router-dom';
+import PeopleIcon from '@material-ui/icons/People';
+import BookIcon from '@material-ui/icons/Book';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+
 
 const drawerWidth = 240;
 
@@ -37,6 +44,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  link: {
+    textDecoration: 'none',
+    color: 'black',
+},
 }));
 
 export default function Navbar() {
@@ -62,12 +73,48 @@ export default function Navbar() {
         <Toolbar />
         <div className={classes.drawerContainer}>
         <List component="nav" aria-label="main mailbox folders">
-        <ListItem button>
-          <ListItemIcon>
-            <BorderColorIcon />
-          </ListItemIcon>
-          <ListItemText primary="Prescription" />
-        </ListItem>
+        <NavLink className={classes.link} to='/home'>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemText>Home</ListItemText>
+                    </ListItem>
+        </NavLink>
+        <NavLink className={classes.link} to='/userpresc'>
+                    <ListItem button>
+                        <ListItemIcon>
+                          <PeopleIcon />
+                        </ListItemIcon>
+                        <ListItemText>User Details</ListItemText>
+                    </ListItem>
+        </NavLink>
+        <NavLink className={classes.link} to='/userDiaryDetails'>
+                    <ListItem button>
+                        <ListItemIcon>
+                          <BookIcon />
+                        </ListItemIcon>
+                        <ListItemText>User Diary</ListItemText>
+                    </ListItem>
+        </NavLink>
+        <NavLink className={classes.link} to='/home'>
+                    <ListItem button onClick={()=>{localStorage.removeItem("currentPatient");
+                  localStorage.removeItem("patientsNo")}}>
+                        <ListItemIcon>
+                          <HighlightOffIcon />
+                        </ListItemIcon>
+                        <ListItemText>Clear User</ListItemText>
+                    </ListItem>
+        </NavLink>
+        <NavLink className={classes.link} to='/login'>
+                    <ListItem button onClick={()=>{localStorage.clear()}}>
+                        <ListItemIcon>
+                          <PowerSettingsNewIcon />
+                        </ListItemIcon>
+                        <ListItemText>Log Out</ListItemText>
+                    </ListItem>
+        </NavLink>
+        
       </List>
         </div>
       </Drawer>

@@ -19,7 +19,10 @@ import axios from 'axios';
 import Link from '@material-ui/core/Link';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Avatar from '@material-ui/core/Avatar';
-
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import { NavLink } from 'react-router-dom';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,6 +65,17 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "280px",
     marginRight: "20px"
   },
+  fab:{
+    margin: 0,
+ top: 'auto',
+ right: 40,
+ bottom: 20,
+ left: 'auto',
+ position: 'fixed',
+  },
+  link: {
+    textDecoration: 'none',
+},
 }));
 
 function Prescription(props) {
@@ -293,6 +307,12 @@ export default function Userpresc(props) {
       <TabPanel value={value} index={1}>
         {hell && <Reports hell={hell} />}
       </TabPanel>
+     
+      <NavLink className={classes.link} to='/prescribe'>
+        <Fab color="primary" aria-label="edit" className={classes.fab} >
+          <EditIcon />
+        </Fab>           
+        </NavLink>
     </Paper>
   );
 }
