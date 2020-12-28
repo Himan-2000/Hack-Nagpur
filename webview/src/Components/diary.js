@@ -13,52 +13,84 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Link from '@material-ui/core/Link';
 import { Paper } from '@material-ui/core';
+import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      marginTop:"50px",
-      marginLeft:"50px",
-      marginRight:"50px",
-      padding:"50px"
-    },
-    heading:{
-        fontWeight:"bold"
-    },
-    text:{
-        marginTop:"10px"
-    },
-    submit:{
-        marginTop:"20px"
-    }
-  }));
+  root: {
+    marginTop: "50px",
+    marginLeft: "50px",
+    marginRight: "50px",
+    padding: "50px"
+  },
+  heading: {
+    fontWeight: "bold"
+  },
+  text: {
+    marginTop: "10px"
+  },
+  submit: {
+    marginTop: "20px"
+  }
+}));
 
-export default function Dairy(){
-    const classes=useStyles();
-    return(
-        <React.Fragment>
-            <Paper className={classes.root} elevation={0} variant="outlined" >
-                <Typography className={classes.heading} variant="h5" color="primary">Personal Diary</Typography>
-                <TextField
-                className={classes.text}
-                label=""
-                required
-                variant="outlined"
-                multiline
-                rows={18}
-                fullWidth
-                placeholder="Something To Share?"  />
-                <Button
-                disableElevation
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Submit
+export default function Dairy() {
+  const classes = useStyles();
+
+  const [thoughts, setThoughts] = useState();
+
+  const onChange = (e) => setThoughts(e.target.value)
+
+  const onClickHandler = async () => {
+    try {
+      console.log(thoughts)
+      var data = JSON.stringify({ "query": thoughts });
+
+      var config = {
+        method: 'post',
+        url: 'https://healthcare-sentiment.herokuapp.com/fetch',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: data
+      };
+
+      const response = await axios(config)
+
+      console.log(response.data)
+
+    } catch (error) {
+
+    }
+  }
+
+  return (
+    <React.Fragment>
+      <Paper className={classes.root} elevation={0} variant="outlined" >
+        <Typography className={classes.heading} variant="h5" color="primary">Personal Diary</Typography>
+        <TextField
+          className={classes.text}
+          label=""
+          required
+          variant="outlined"
+          multiline
+          rows={23}
+          fullWidth
+          value={thoughts}
+          onChange={onChange}
+          placeholder="Something To Share?" />
+        <Button
+          disableElevation
+          type="submit"
+          variant="contained"
+          color="primary"
+          onClick={onClickHandler}
+          className={classes.submit}
+        >
+          Submit
           </Button>
-            </Paper>
-        </React.Fragment>
-    );
+      </Paper>
+    </React.Fragment>
+  );
 }
 
 

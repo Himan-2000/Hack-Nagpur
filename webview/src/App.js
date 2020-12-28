@@ -19,9 +19,9 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <Router>
           <Switch>
-          <Route path="/diary">
-          <Diary />
-          </Route>
+            <Route path="/diary/:id">
+              <Diary />
+            </Route>
           </Switch>
         </Router>
       </MuiThemeProvider>
