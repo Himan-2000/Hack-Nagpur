@@ -69,7 +69,7 @@ function News() {
                 height="150"
                 image={news.urlToImage}
               />
-              <CardContent style={{ "minHeight": "100px" }}>
+              <CardContent style={{ "minHeight": "120px" }}>
                 <Typography>{news.title}</Typography>
               </CardContent>
             </CardActionArea>

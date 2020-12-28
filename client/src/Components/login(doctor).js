@@ -55,7 +55,7 @@ export default function LogIn() {
   let history = useHistory()
   useEffect(() => {
     if (isAuthenticated) {
-      history.push('/prescribe')
+      history.push('/home')
     }
     // eslint-disable-next-line
   }, [isAuthenticated])
@@ -165,6 +165,7 @@ export default function LogIn() {
               color="primary"
               onClick={onSubmit}
               className={classes.submit}
+              disableElevation
             >
               Log In
           </Button>

@@ -58,7 +58,7 @@ export default function Register() {
   let history = useHistory()
   useEffect(() => {
     if (isAuthenticated) {
-      history.push('/prescribe')
+      history.push('/home')
     }
     // eslint-disable-next-line
   }, [isAuthenticated])
@@ -183,6 +183,7 @@ export default function Register() {
               color="primary"
               className={classes.submit}
               onClick={onSubmit}
+              disableElevation
             >
               Register
           </Button>
