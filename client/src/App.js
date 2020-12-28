@@ -8,62 +8,68 @@ import Prescribe from './Components/presc(doctor)';
 import Register from './Components/register(doctor)';
 import Userpresc from './Components/userpresc';
 import Home from './Components/home';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Pusher from 'pusher-js';
 import react, { useState, useEffect } from 'react';
 import UserDiaryDetails from './Components/UserDiaryDetails';
-
+import Pay from './Components/pay';
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: '#64b5f6',
-      contrastText: '#fff'
+      contrastText: '#fff',
     },
   },
 });
 
 function App() {
-
-  const [pusher, setPusher] = useState()
+  const [pusher, setPusher] = useState();
 
   useEffect(() => {
-    setPusher(new Pusher('b48cb6e685ac70d70a56', {
-      cluster: 'ap2'
-    }))
-    console.log(1)
+    setPusher(
+      new Pusher('b48cb6e685ac70d70a56', {
+        cluster: 'ap2',
+      })
+    );
+    console.log(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
-    <div className="App">
-      {pusher && <MuiThemeProvider theme={theme}>
-        <Router>
-          <Switch>
-            <Route path="/login">
-              <LogIn />
-            </Route>
-            <Route path="/register">
-              <Register />
-            </Route>
-            <Route path="/home">
-              <Navbar />
-              <Home />
-            </Route>
-            <Route path="/prescribe" >
-              <Navbar />
-              <Prescribe pusher={pusher} />
-            </Route>
-            <Route path="/userpresc">
-              <Navbar />
-              <Userpresc pusher={pusher} />
-            </Route>
-            <Route path="/userDiaryDetails">
-              <Navbar />
-              <UserDiaryDetails />
-            </Route>
-          </Switch>
-        </Router>
-      </MuiThemeProvider>}
+    <div className='App'>
+      {pusher && (
+        <MuiThemeProvider theme={theme}>
+          <Router>
+            <Switch>
+              <Route path='/login'>
+                <LogIn />
+              </Route>
+              <Route path='/payment'>
+                <Pay />
+              </Route>
+              <Route path='/register'>
+                <Register />
+              </Route>
+              <Route path='/home'>
+                <Navbar />
+                <Home />
+              </Route>
+              <Route path='/prescribe'>
+                <Navbar />
+                <Prescribe pusher={pusher} />
+              </Route>
+              <Route path='/userpresc'>
+                <Navbar />
+                <Userpresc pusher={pusher} />
+              </Route>
+              <Route path='/userDiaryDetails'>
+                <Navbar />
+                <UserDiaryDetails />
+              </Route>
+            </Switch>
+          </Router>
+        </MuiThemeProvider>
+      )}
     </div>
   );
 }
