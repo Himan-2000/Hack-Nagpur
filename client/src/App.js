@@ -7,9 +7,10 @@ import LogIn from './Components/login(doctor)';
 import Prescribe from './Components/presc(doctor)';
 import Register from './Components/register(doctor)';
 import Userpresc from './Components/userpresc';
+import Home from './Components/home';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Pusher from 'pusher-js'
-import react, { useState, useEffect } from 'react'
+import Pusher from 'pusher-js';
+import react, { useState, useEffect } from 'react';
 
 const theme = createMuiTheme({
   palette: {
@@ -42,6 +43,10 @@ function App() {
             </Route>
             <Route path="/register">
               <Register />
+            </Route>
+            <Route path="/home">
+              <Navbar />
+              <Home />
             </Route>
             <Route path="/prescribe" >
               <Navbar />
