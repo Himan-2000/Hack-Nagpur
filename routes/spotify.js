@@ -4,6 +4,19 @@ var axios = require('axios');
 var qs = require('qs');
 
 router.post('/playlist', async (req, res, next) => {
+  var data = JSON.stringify({ query: req.body.message });
+  var config = {
+    method: 'post',
+    url: 'https://healthcare-sentiment.herokuapp.com/fetch',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: data,
+  };
+
+  const sentiment_data = await axios(config);
+  console.log(sentiment_data.data);
+  const score = sentiment_data.data.scores.compound;
   var data = qs.stringify({
     grant_type: 'client_credentials',
   });
@@ -26,8 +39,10 @@ router.post('/playlist', async (req, res, next) => {
 
   console.log(token);
   const text = 'Bearer' + ' ' + token;
+
   console.log(text);
-  if (req.body.score < -0.5) {
+
+  if (score < -0.5) {
     var config = {
       method: 'get',
       url: 'https://api.spotify.com/v1/search?q=positive&type=playlist&limit=3',
@@ -42,7 +57,7 @@ router.post('/playlist', async (req, res, next) => {
       success: true,
       data: resp2.data,
     });
-  } else if (-0.5 < req.body.score && req.body.score < 0.5) {
+  } else if (-0.5 < score && score < 0.5) {
     var config = {
       method: 'get',
       url: 'https://api.spotify.com/v1/search?q=soul&type=playlist&limit=3',
@@ -70,7 +85,8 @@ router.post('/playlist', async (req, res, next) => {
 
     return res.status(200).json({
       success: true,
-      data: resp2.data,
+      sentiment_data: sentiment_data.data,
+      playlist: resp2.data,
     });
   }
 });
