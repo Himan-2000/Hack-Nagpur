@@ -57,8 +57,8 @@ function App() {
               <Navbar />
               <Userpresc pusher={pusher} />
             </Route>
-            <Route path="/userDairyDetails">
-              {/* <Navbar /> */}
+            <Route path="/userDiaryDetails">
+              <Navbar />
               <UserDiaryDetails />
             </Route>
           </Switch>
