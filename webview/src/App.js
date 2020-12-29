@@ -1,6 +1,7 @@
 import 'fontsource-roboto';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import Diary from './Components/diary';
+import Pay from './Components/pay';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const theme = createMuiTheme({
@@ -20,6 +21,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/diary/:userId" component={Diary} />
+            <Route exact path="/payment" component={Pay} />
           </Switch>
         </Router>
       </MuiThemeProvider>
