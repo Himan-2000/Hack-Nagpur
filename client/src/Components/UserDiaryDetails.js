@@ -55,8 +55,10 @@ const UserDiaryDetails = () => {
         return list.map((item)=>{
             return(
         <Card className={classes.card} elevation={0} variant="outlined">
-            <CardContent><Typography variant="h6">{item.Summary}</Typography>
-        <Typography variant="body1">{item.text}</Typography>
+            <CardContent>
+            <Typography variant="h6" style={{"fontWeight":"bold","marginTop":"20px"}}>{item.user.name}</Typography>
+            <Typography variant="h6">{item.Summary}</Typography>
+        {/* <Typography variant="body1">{item.text}</Typography> */}
         <Typography>
                       {item.ent_list.map((ent) => {
                         return (
@@ -64,6 +66,20 @@ const UserDiaryDetails = () => {
                         );
                       })}
                     </Typography>
+                    <br />
+                    <Typography variant="body2">
+                    <span style={{"fontWeight":"bold"}}>Positive</span> - {item.scores.pos}
+              </Typography>
+              <Typography variant="body2">
+              <span style={{"fontWeight":"bold"}}>Negative</span> - {item.scores.neg}
+              </Typography>
+              <Typography variant="body2">
+              <span style={{"fontWeight":"bold"}}>Neutral</span> - {item.scores.neu}
+              </Typography>
+              <Typography variant="body2">
+              <span style={{"fontWeight":"bold"}}>OverAll</span> - {item.scores.compound}
+              </Typography>
+              <br />
         <Typography variant="caption" color="primary">{item.date.slice(0,10)}</Typography></CardContent>
         </Card>
             );
@@ -72,7 +88,7 @@ const UserDiaryDetails = () => {
 
     return (
         <Paper className={classes.root} elevation={0} variant="outlined">
-            <Typography variant="h5" style={{"fontWeight":"bold","marginLeft":"20px","marginTop":"20px"}}>Diary Summary Of {list[0].user.name}</Typography>
+           
             {displayDiary()}
         </Paper>
     )

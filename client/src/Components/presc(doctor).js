@@ -142,8 +142,8 @@ export default function Prescribe(props) {
         // console.log(doc.output('blob'))
 
         doc.setFontSize(20)
-        doc.text(50, 25, 'Secure Health')
-        doc.addImage(Img, 'pdf', 50, 35, 80, 10)
+        doc.text(50, 35, 'Secure Health')
+        // doc.addImage(Img, 'pdf', 50, 35, 80, 10)
         doc.setFontSize(10)
         doc.text(50, 50, `Patient's Name: ${currentUser.name}`)
         doc.text(50, 55, `Age: ${currentUser.age}`)
