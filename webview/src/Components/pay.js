@@ -1,6 +1,22 @@
 import React from 'react';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  container:{
+    // display: "flex",
+  },
+  button:{
+    marginLeft:"25%",
+    marginTop:"20%"
+  }
+
+
+}));
+
 const Pay = () => {
+  const classes = useStyles();
   const payment = async () => {
     var config = {
       method: 'post',
@@ -43,9 +59,8 @@ const Pay = () => {
     rzp1.open();
   };
   return (
-    <div>
-      <h1>Hello</h1>
-      <button onClick={payment}>Pay Here !</button>
+    <div className={classes.container}>
+      <Button onClick={payment} color="primary" variant="contained" className={classes.button}>Pay For An Appointment</Button>
     </div>
   );
 };
