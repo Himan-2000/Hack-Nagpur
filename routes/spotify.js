@@ -57,7 +57,8 @@ router.post('/playlist', async (req, res, next) => {
 
       return res.status(200).json({
         success: true,
-        data: resp2.data,
+        sentiment_data: sentiment_data.data,
+        playlist: resp2.data,
       });
     } else if (-0.5 < score && score < 0.5) {
       var config = {
@@ -72,7 +73,8 @@ router.post('/playlist', async (req, res, next) => {
 
       return res.status(200).json({
         success: true,
-        data: resp2.data,
+        sentiment_data: sentiment_data.data,
+        playlist: resp2.data,
       });
     } else {
       var config = {
