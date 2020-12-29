@@ -42,14 +42,14 @@ const UserDiaryDetails = () => {
             setList(response.data)
 
         } catch (error) {
-            //Ispe error toast kar dena na pl
+            console.log(error)
         }
     }
 
     useEffect(() => {
         getAllUserDiary()
     }, [])
-
+    console.log(list)
 
     const displayDiary = () => {
         return list.map((item)=>{
@@ -72,6 +72,7 @@ const UserDiaryDetails = () => {
 
     return (
         <Paper className={classes.root} elevation={0} variant="outlined">
+            <Typography variant="h5" style={{"fontWeight":"bold","marginLeft":"20px","marginTop":"20px"}}>Diary Summary Of {list[0].user.name}</Typography>
             {displayDiary()}
         </Paper>
     )
