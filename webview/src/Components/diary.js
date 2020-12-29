@@ -33,21 +33,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Dairy() {
+export default function Dairy(props) {
   const classes = useStyles();
 
   const [thoughts, setThoughts] = useState();
+  const [sentiment, setSentiment] = useState()
 
   const onChange = (e) => setThoughts(e.target.value)
 
   const onClickHandler = async () => {
     try {
       console.log(thoughts)
-      var data = JSON.stringify({ "query": thoughts });
+      var data = JSON.stringify({ "message": thoughts });
 
       var config = {
         method: 'post',
-        url: 'https://healthcare-sentiment.herokuapp.com/fetch',
+        url: 'https://health-care-auto.herokuapp.com/api/spotify/playlist',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -55,11 +56,39 @@ export default function Dairy() {
       };
 
       const response = await axios(config)
+      const hell = props.match.params.userId
+      console.log(hell)
 
-      console.log(response.data)
+      const { scores, Summary, ent_list } = response.data.sentiment_data
+
+      setSentiment(response.data.sentiment_data)
+
+      console.log(scores, Summary, ent_list)
+      const diaryData = {
+        text: thoughts,
+        user: hell,
+        scores: scores,
+        Summary: Summary,
+        ent_list: ent_list
+      }
+
+      console.log(diaryData)
+
+      var config = {
+        method: 'post',
+        url: 'https://health-care-auto.herokuapp.com/api/diary/',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(diaryData)
+      };
+
+      const res = await axios(config);
+
+      console.log(res)
 
     } catch (error) {
-
+      //ider toast daal de na please
     }
   }
 
@@ -89,6 +118,7 @@ export default function Dairy() {
           Submit
           </Button>
       </Paper>
+      {sentiment && <div>{sentiment.Summary}</div>}
     </React.Fragment>
   );
 }

@@ -19,9 +19,7 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <Router>
           <Switch>
-            <Route path="/diary/:id">
-              <Diary />
-            </Route>
+            <Route exact path="/diary/:userId" component={Diary} />
           </Switch>
         </Router>
       </MuiThemeProvider>
