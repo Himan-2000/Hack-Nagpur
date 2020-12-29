@@ -23,7 +23,8 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import { NavLink } from 'react-router-dom';
-
+import QRCode from './images/qr.png';
+import CardMedia from '@material-ui/core/CardMedia';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -76,6 +77,12 @@ const useStyles = makeStyles((theme) => ({
   link: {
     textDecoration: 'none',
 },
+qr:{
+  width:"300px",
+  marginLeft:"auto",
+  marginRight:"auto",
+  marginTop:"50px"
+}
 }));
 
 function Prescription(props) {
@@ -84,11 +91,13 @@ function Prescription(props) {
   const [count, setCount] = useState();
   const [name, setName] = useState("");
   const [currentUser, setCurrentUser] = useState()
+  const [temp, setTemp] = useState(false)
 
   useEffect(() => {
     const currentuser_channel = props.hell.pusher.subscribe('user');
     currentuser_channel.bind(`${localStorage.getItem('userId')}`, function (data) {
       setCurrentUser(data)
+      setTemp(true)
       console.log(data)
       localStorage.setItem('currentPatient', data._id)
       localStorage.setItem('patientsNo', data.contact)
@@ -115,6 +124,7 @@ function Prescription(props) {
     const response = await axios(config)
     console.log(response.data)
     setCurrentUser(response.data.user)
+    setTemp(true)
     axios
       .get(`https://health-care-auto.herokuapp.com/api/user/${localStorage.getItem('patientsNo')}`)
       .then(async (json) => {
@@ -172,11 +182,38 @@ function Prescription(props) {
   }
   return (
     <React.Fragment>
+      {temp?
+      <React.Fragment>
       <Typography variant="h5" style={{ "fontWeight": "bold", "marginTop": "20px", "marginLeft": "20px" }}>Patient - {name}</Typography><br />
       <Grid container spacing={5}>
         {displayPresc()}
       </Grid>
+      <NavLink className={classes.link} to='/prescribe'>
+        <Fab color="primary" aria-label="edit" className={classes.fab} >
+          <EditIcon />
+        </Fab>           
+        </NavLink>
     </React.Fragment>
+
+    :
+    <React.Fragment>
+      <Card className={classes.qr} variant="outlined">
+      <CardActionArea>
+              <CardMedia
+                component="img"
+                alt="Headline"
+                height="300"
+                image={QRCode}
+              />
+              <CardContent>
+                <Typography color="primary">Please scan patient's QR code to view his/her prescriptions </Typography>
+              </CardContent>
+            </CardActionArea>
+      </Card>
+    </React.Fragment>
+      }
+    </React.Fragment>
+    
   );
 }
 
@@ -185,12 +222,14 @@ function Reports(props) {
   const [data, setData] = useState([]);
   const [count, setCount] = useState();
   const [name, setName] = useState("");
-  const [currentUser, setCurrentUser] = useState()
+  const [currentUser, setCurrentUser] = useState();
+  const[temp, setTemp]=useState(false);
 
   useEffect(() => {
     const currentuser_channel = props.hell.pusher.subscribe('user');
     currentuser_channel.bind(`${localStorage.getItem('userId')}`, function (data) {
       setCurrentUser(data)
+      setTemp(true)
       console.log(data)
       localStorage.setItem('currentPatient', data._id)
       localStorage.setItem('patientsNo', data.contact)
@@ -217,6 +256,7 @@ function Reports(props) {
     const response = await axios(config)
     console.log(response.data)
     setCurrentUser(response.data.user)
+    setTemp(true);
     axios
       .get(`https://health-care-auto.herokuapp.com/api/user/${localStorage.getItem('patientsNo')}`)
       .then(async (json) => {
@@ -271,11 +311,36 @@ function Reports(props) {
   }
   return (
     <React.Fragment>
-      <Typography variant="h5" style={{ "fontWeight": "bold", "marginTop": "20px", "marginLeft": "20px" }}>Patient - {name}</Typography><br />
-      <Grid container spacing={5}>
-        {displayReps()}
-      </Grid>
-    </React.Fragment>
+    {temp?
+    <React.Fragment>
+    <Typography variant="h5" style={{ "fontWeight": "bold", "marginTop": "20px", "marginLeft": "20px" }}>Patient - {name}</Typography><br />
+    <Grid container spacing={5}>
+      {displayReps()}
+    </Grid>
+    <NavLink className={classes.link} to='/prescribe'>
+        <Fab color="primary" aria-label="edit" className={classes.fab} >
+          <EditIcon />
+        </Fab>           
+        </NavLink>
+  </React.Fragment>
+  :
+  <React.Fragment>
+    <Card className={classes.qr} variant="outlined">
+    <CardActionArea>
+            <CardMedia
+              component="img"
+              alt="Headline"
+              height="300"
+              image={QRCode}
+            />
+            <CardContent>
+              <Typography color="primary">Please scan patient's QR code to view his/her reports </Typography>
+            </CardContent>
+          </CardActionArea>
+    </Card>
+  </React.Fragment>
+    }
+  </React.Fragment>
   );
 }
 
@@ -308,11 +373,7 @@ export default function Userpresc(props) {
         {hell && <Reports hell={hell} />}
       </TabPanel>
      
-      <NavLink className={classes.link} to='/prescribe'>
-        <Fab color="primary" aria-label="edit" className={classes.fab} >
-          <EditIcon />
-        </Fab>           
-        </NavLink>
+      
     </Paper>
   );
 }
