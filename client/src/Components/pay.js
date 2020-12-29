@@ -4,7 +4,7 @@ const Pay = () => {
   const payment = async () => {
     var config = {
       method: 'post',
-      url: 'localhost:5000/api/payment/payment_order',
+      url: 'https://health-care-auto.herokuapp.com/api/pay/payment_order',
       headers: {},
     };
 
