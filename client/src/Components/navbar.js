@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   link: {
     textDecoration: 'none',
     color: 'black',
-},
+  },
 }));
 
 export default function Navbar() {
@@ -58,7 +58,7 @@ export default function Navbar() {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" style={{fontWeight:"bold"}} noWrap>
+          <Typography variant="h6" style={{ fontWeight: "bold" }} noWrap>
             Health Care
           </Typography>
         </Toolbar>
@@ -72,50 +72,52 @@ export default function Navbar() {
       >
         <Toolbar />
         <div className={classes.drawerContainer}>
-        <List component="nav" aria-label="main mailbox folders">
-        <NavLink className={classes.link} to='/home'>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <HomeIcon />
-                        </ListItemIcon>
-                        <ListItemText>Home</ListItemText>
-                    </ListItem>
-        </NavLink>
-        <NavLink className={classes.link} to='/userpresc'>
-                    <ListItem button>
-                        <ListItemIcon>
-                          <PeopleIcon />
-                        </ListItemIcon>
-                        <ListItemText>User Details</ListItemText>
-                    </ListItem>
-        </NavLink>
-        <NavLink className={classes.link} to='/userDiaryDetails'>
-                    <ListItem button>
-                        <ListItemIcon>
-                          <BookIcon />
-                        </ListItemIcon>
-                        <ListItemText>User Diary</ListItemText>
-                    </ListItem>
-        </NavLink>
-        <NavLink className={classes.link} to='/home'>
-                    <ListItem button onClick={()=>{localStorage.removeItem("currentPatient");
-                  localStorage.removeItem("patientsNo")}}>
-                        <ListItemIcon>
-                          <HighlightOffIcon />
-                        </ListItemIcon>
-                        <ListItemText>Clear User</ListItemText>
-                    </ListItem>
-        </NavLink>
-        <NavLink className={classes.link} to='/login'>
-                    <ListItem button onClick={()=>{localStorage.clear()}}>
-                        <ListItemIcon>
-                          <PowerSettingsNewIcon />
-                        </ListItemIcon>
-                        <ListItemText>Log Out</ListItemText>
-                    </ListItem>
-        </NavLink>
-        
-      </List>
+          <List component="nav" aria-label="main mailbox folders">
+            <NavLink className={classes.link} to='/home'>
+              <ListItem button>
+                <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
+                <ListItemText>Home</ListItemText>
+              </ListItem>
+            </NavLink>
+            <NavLink className={classes.link} to='/userpresc'>
+              <ListItem button>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText>User Details</ListItemText>
+              </ListItem>
+            </NavLink>
+            <NavLink className={classes.link} to='/userDiaryDetails'>
+              <ListItem button>
+                <ListItemIcon>
+                  <BookIcon />
+                </ListItemIcon>
+                <ListItemText>User Diary</ListItemText>
+              </ListItem>
+            </NavLink>
+            <NavLink className={classes.link} to='/home'>
+              <ListItem button onClick={() => {
+                localStorage.removeItem("currentPatient");
+                localStorage.removeItem("patientsNo")
+              }}>
+                <ListItemIcon>
+                  <HighlightOffIcon />
+                </ListItemIcon>
+                <ListItemText>Clear User</ListItemText>
+              </ListItem>
+            </NavLink>
+            <NavLink className={classes.link} to='/login'>
+              <ListItem button onClick={() => { localStorage.clear() }}>
+                <ListItemIcon>
+                  <PowerSettingsNewIcon />
+                </ListItemIcon>
+                <ListItemText>Log Out</ListItemText>
+              </ListItem>
+            </NavLink>
+
+          </List>
         </div>
       </Drawer>
     </React.Fragment>
