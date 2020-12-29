@@ -12,8 +12,9 @@ import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Link from '@material-ui/core/Link';
-import { Paper } from '@material-ui/core';
-import axios from 'axios'
+import { Paper,Divider, CardActionArea } from '@material-ui/core';
+import axios from 'axios';
+import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px"
   },
   submit: {
-    marginTop: "20px"
+    marginTop: "20px",
+    marginBottom:"20px"
   }
 }));
 
@@ -38,7 +40,8 @@ export default function Dairy(props) {
 
   const [thoughts, setThoughts] = useState();
   const [sentiment, setSentiment] = useState()
-  const [playlist, setPlaylist] = useState()
+  const [playlist, setPlaylist] = useState();
+  const [temp, setTemp] = useState(false);
 
   const onChange = (e) => setThoughts(e.target.value)
 
@@ -68,6 +71,8 @@ export default function Dairy(props) {
       setSentiment(response.data.sentiment_data)
 
       console.log(scores, Summary, ent_list)
+      console.log(sentiment)
+      setTemp(true);
       const diaryData = {
         text: thoughts,
         user: hell,
@@ -120,9 +125,54 @@ export default function Dairy(props) {
           className={classes.submit}
         >
           Submit
-          </Button>
+          </Button><br />
+          <Divider />
+          {temp?
+          <React.Fragment>
+            <Typography variant={"h6"} style={{"fontWeight":"bold"}}>Results</Typography>
+            <Card elevation={0} variant="outlined">
+              <CardContent>
+              <Typography>
+                <span style={{"fontWeight":"bold"}}>Positive</span> - {sentiment.scores.pos}
+              </Typography>
+              <Typography>
+                <span style={{"fontWeight":"bold"}}>Negative</span> - {sentiment.scores.neg}
+              </Typography>
+              <Typography>
+                <span style={{"fontWeight":"bold"}}>Neutral</span> - {sentiment.scores.neu}
+              </Typography>
+              <Typography>
+                <span style={{"fontWeight":"bold"}}>OverAll</span> - {sentiment.scores.compound}
+              </Typography>
+              </CardContent>
+            </Card><br />
+            <Divider />
+            <Typography variant={"h6"} style={{"fontWeight":"bold"}}>Mood</Typography>
+            <React.Fragment>
+            {playlist.map((pl)=>{
+              return(
+                <Card variant="outlined" elevation={0} style={{"marginBottom":"10px"}}>
+                  <CardActionArea onClick={() => { window.open(`${pl.external_urls.spotify}`) }}>
+                  <CardMedia
+                component="img"
+                alt="playlist"
+                height="150"
+                image={pl.images[0].url}
+              />
+              <CardContent>
+                <Typography align="center" style={{"fontWeight":"bold"}}>{pl.name}</Typography>
+              </CardContent>
+                  </CardActionArea>
+                </Card>
+              );
+            })}
+            </React.Fragment>
+          </React.Fragment>
+          :
+          null
+          }
       </Paper>
-      {sentiment && <div>{sentiment.Summary}</div>}
+      
     </React.Fragment>
   );
 }
