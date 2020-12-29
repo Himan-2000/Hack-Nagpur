@@ -38,6 +38,7 @@ export default function Dairy(props) {
 
   const [thoughts, setThoughts] = useState();
   const [sentiment, setSentiment] = useState()
+  const [playlist, setPlaylist] = useState()
 
   const onChange = (e) => setThoughts(e.target.value)
 
@@ -56,6 +57,9 @@ export default function Dairy(props) {
       };
 
       const response = await axios(config)
+      console.log(response.data)
+      console.log(response.data.playlist.playlists.items)
+      setPlaylist(response.data.playlist.playlists.items)
       const hell = props.match.params.userId
       console.log(hell)
 
