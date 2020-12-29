@@ -19,6 +19,8 @@ import PeopleIcon from '@material-ui/icons/People';
 import BookIcon from '@material-ui/icons/Book';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import LocalHospitalOutlinedIcon from '@material-ui/icons/LocalHospitalOutlined';
+import LocalHospitalTwoToneIcon from '@material-ui/icons/LocalHospitalTwoTone';
 
 
 const drawerWidth = 240;
@@ -58,8 +60,8 @@ export default function Navbar() {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography variant="h6" style={{fontWeight:"bold"}} noWrap>
-            Health Care
+          <Typography variant="h5" style={{fontWeight:"bold"}} noWrap>
+            Secure Health<LocalHospitalOutlinedIcon fontSize="medium" color="secondary" style={{"marginTop":"2px"}}/>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -86,7 +88,7 @@ export default function Navbar() {
                         <ListItemIcon>
                           <PeopleIcon />
                         </ListItemIcon>
-                        <ListItemText>User Details</ListItemText>
+                        <ListItemText>Patient Details</ListItemText>
                     </ListItem>
         </NavLink>
         <NavLink className={classes.link} to='/userDiaryDetails'>
@@ -94,7 +96,7 @@ export default function Navbar() {
                         <ListItemIcon>
                           <BookIcon />
                         </ListItemIcon>
-                        <ListItemText>User Diary</ListItemText>
+                        <ListItemText>Patient Diary</ListItemText>
                     </ListItem>
         </NavLink>
         <NavLink className={classes.link} to='/home'>
@@ -103,7 +105,7 @@ export default function Navbar() {
                         <ListItemIcon>
                           <HighlightOffIcon />
                         </ListItemIcon>
-                        <ListItemText>Clear User</ListItemText>
+                        <ListItemText>Clear Patient</ListItemText>
                     </ListItem>
         </NavLink>
         <NavLink className={classes.link} to='/login'>
