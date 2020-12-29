@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   link: {
     textDecoration: 'none',
     color: 'black',
-  },
+},
 }));
 
 export default function Navbar() {
@@ -60,13 +60,8 @@ export default function Navbar() {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-<<<<<<< HEAD
           <Typography variant="h5" style={{fontWeight:"bold"}} noWrap>
             Secure Health<LocalHospitalOutlinedIcon fontSize="medium" color="secondary" style={{"marginTop":"2px"}}/>
-=======
-          <Typography variant="h6" style={{ fontWeight: "bold" }} noWrap>
-            Health Care
->>>>>>> a870acd75117a92c7e5df3b24d8387ad0d8caabe
           </Typography>
         </Toolbar>
       </AppBar>
@@ -79,7 +74,6 @@ export default function Navbar() {
       >
         <Toolbar />
         <div className={classes.drawerContainer}>
-<<<<<<< HEAD
         <List component="nav" aria-label="main mailbox folders">
         <NavLink className={classes.link} to='/home'>
                     <ListItem button>
@@ -124,54 +118,6 @@ export default function Navbar() {
         </NavLink>
         
       </List>
-=======
-          <List component="nav" aria-label="main mailbox folders">
-            <NavLink className={classes.link} to='/home'>
-              <ListItem button>
-                <ListItemIcon>
-                  <HomeIcon />
-                </ListItemIcon>
-                <ListItemText>Home</ListItemText>
-              </ListItem>
-            </NavLink>
-            <NavLink className={classes.link} to='/userpresc'>
-              <ListItem button>
-                <ListItemIcon>
-                  <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText>User Details</ListItemText>
-              </ListItem>
-            </NavLink>
-            <NavLink className={classes.link} to='/userDiaryDetails'>
-              <ListItem button>
-                <ListItemIcon>
-                  <BookIcon />
-                </ListItemIcon>
-                <ListItemText>User Diary</ListItemText>
-              </ListItem>
-            </NavLink>
-            <NavLink className={classes.link} to='/home'>
-              <ListItem button onClick={() => {
-                localStorage.removeItem("currentPatient");
-                localStorage.removeItem("patientsNo")
-              }}>
-                <ListItemIcon>
-                  <HighlightOffIcon />
-                </ListItemIcon>
-                <ListItemText>Clear User</ListItemText>
-              </ListItem>
-            </NavLink>
-            <NavLink className={classes.link} to='/login'>
-              <ListItem button onClick={() => { localStorage.clear() }}>
-                <ListItemIcon>
-                  <PowerSettingsNewIcon />
-                </ListItemIcon>
-                <ListItemText>Log Out</ListItemText>
-              </ListItem>
-            </NavLink>
-
-          </List>
->>>>>>> a870acd75117a92c7e5df3b24d8387ad0d8caabe
         </div>
       </Drawer>
     </React.Fragment>
