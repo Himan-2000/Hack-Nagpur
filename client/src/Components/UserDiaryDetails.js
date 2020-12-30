@@ -13,16 +13,16 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
-      backgroundColor: theme.palette.background.paper,
-      marginTop: "100px",
-      marginLeft: "280px",
-      marginRight: "20px"
+        flexGrow: 1,
+        backgroundColor: theme.palette.background.paper,
+        marginTop: "100px",
+        marginLeft: "280px",
+        marginRight: "20px"
     },
-    card:{
-        margin:"20px"
+    card: {
+        margin: "20px"
     }
-  }));
+}));
 
 const UserDiaryDetails = () => {
     const classes = useStyles()
@@ -52,27 +52,27 @@ const UserDiaryDetails = () => {
     console.log(list)
 
     const displayDiary = () => {
-        return list.map((item)=>{
-            return(
-        <Card className={classes.card} elevation={0} variant="outlined">
-            <CardContent><Typography variant="h6">{item.Summary}</Typography>
-        <Typography variant="body1">{item.text}</Typography>
-        <Typography>
-                      {item.ent_list.map((ent) => {
-                        return (
-                          <span>{ent} </span>
-                        );
-                      })}
-                    </Typography>
-        <Typography variant="caption" color="primary">{item.date.slice(0,10)}</Typography></CardContent>
-        </Card>
+        return list.map((item) => {
+            return (
+                <Card className={classes.card} elevation={0} variant="outlined">
+                    <CardContent><Typography variant="h6">{item.Summary}</Typography>
+                        <Typography variant="body1">{item.text}</Typography>
+                        <Typography>
+                            {item.ent_list.map((ent) => {
+                                return (
+                                    <span>{ent} </span>
+                                );
+                            })}
+                        </Typography>
+                        <Typography variant="caption" color="primary">{item.date.slice(0, 10)}</Typography></CardContent>
+                </Card>
             );
         })
     }
 
     return (
         <Paper className={classes.root} elevation={0} variant="outlined">
-            <Typography variant="h5" style={{"fontWeight":"bold","marginLeft":"20px","marginTop":"20px"}}>Diary Summary Of {list[0].user.name}</Typography>
+            <Typography variant="h5" style={{ "fontWeight": "bold", "marginLeft": "20px", "marginTop": "20px" }}>Diary Summary Of {list[0].user.name}</Typography>
             {displayDiary()}
         </Paper>
     )
