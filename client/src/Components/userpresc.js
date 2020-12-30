@@ -154,6 +154,9 @@ function Prescription(props) {
                 <span style={{ "fontWeight": "bold" }}>No.</span><span>-{index + 1}</span>
               </Typography>
               <Typography>
+                <span style={{ "fontWeight": "bold" }}>Title</span><span>-{presc.title}</span>
+              </Typography>
+              <Typography>
                 <span style={{ "fontWeight": "bold" }}>Doctor</span><span>-{presc.doctor.name}</span>
               </Typography>
               <Typography>
@@ -199,14 +202,14 @@ function Prescription(props) {
     <React.Fragment>
       <Card className={classes.qr} variant="outlined">
       <CardActionArea>
-              <CardMedia
+              {/* <CardMedia
                 component="img"
                 alt="Headline"
                 height="300"
                 image={QRCode}
-              />
+              /> */}
               <CardContent>
-                <Typography color="primary">Please scan patient's QR code to view his/her prescriptions </Typography>
+                <Typography color="primary" variant="h5" style={{"fontWeight":"bold"}}>Please scan patient's QR code to view his/her prescriptions </Typography>
               </CardContent>
             </CardActionArea>
       </Card>
@@ -263,7 +266,7 @@ function Reports(props) {
         let mydata = json.data;
         console.log('test');
         console.log(mydata);
-        setData(mydata.userPrescriptions);
+        setData(mydata.userReports);
         setCount(mydata.noOfPrescriptions);
         setName(mydata.user.name);
       });
@@ -327,14 +330,14 @@ function Reports(props) {
   <React.Fragment>
     <Card className={classes.qr} variant="outlined">
     <CardActionArea>
-            <CardMedia
+            {/* <CardMedia
               component="img"
               alt="Headline"
               height="300"
               image={QRCode}
-            />
+            /> */}
             <CardContent>
-              <Typography color="primary">Please scan patient's QR code to view his/her reports </Typography>
+              <Typography color="primary" variant="h5" style={{"fontWeight":"bold"}}>Please scan patient's QR code to view his/her reports </Typography>
             </CardContent>
           </CardActionArea>
     </Card>
