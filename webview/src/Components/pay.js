@@ -4,12 +4,12 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  container:{
+  container: {
     // display: "flex",
   },
-  button:{
-    marginLeft:"25%",
-    marginTop:"20%"
+  button: {
+    marginLeft: "25%",
+    marginTop: "20%"
   }
 
 
@@ -31,7 +31,7 @@ const Pay = () => {
       key: 'rzp_test_RJJUKEC7ow8MZc', // Enter the Key ID generated from the Dashboard
       amount: order.data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: 'INR',
-      name: 'Carte',
+      name: 'My Health',
 
       order_id: order.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
       handler: async function (res) {
