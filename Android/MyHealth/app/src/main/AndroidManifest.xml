@@ -17,10 +17,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".EmergencyActivity"></activity>
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD9TdAVSr75h0mXqSBxaVUS1Pz0NyXk8bM" />
-
 
         <activity android:name=".AppointmentActivity" />
         <activity android:name=".DiaryActivity" />
