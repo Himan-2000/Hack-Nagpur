@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ProgressBar
+        android:id="@+id/second_progress2"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignStart="@id/minute_progress2"
+        android:layout_alignTop="@id/minute_progress2"
+        android:layout_alignEnd="@id/minute_progress2"
+        android:layout_alignBottom="@id/minute_progress2"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:indeterminate="false"
+        android:max="100"
+
+        android:paddingStart="7dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="7dp"
+        android:paddingBottom="7dp"
+        android:progress="100"
+        android:progressDrawable="@drawable/circular_progress1" />
+
+    <ProgressBar
+        android:id="@+id/minute_progress2"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="85dp"
+
+        android:layout_marginBottom="15dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:paddingStart="7dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="7dp"
+        android:paddingBottom="7dp"
+        android:progress="100"
+        android:progressDrawable="@drawable/circular_progress1" />
+
+    <TextView
+        android:id="@+id/stepCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/minute_progress2"
+        android:layout_alignTop="@+id/minute_progress2"
+        android:layout_alignEnd="@+id/minute_progress2"
+        android:layout_alignBottom="@+id/second_progress2"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="112dp"
+        android:text="1000 Steps today"
+        android:textAlignment="center"
+        android:textColor="@color/colorGreen"
+        android:textSize="24sp" />
+
+    <ProgressBar
+        android:id="@+id/water_progress"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignStart="@id/steps_progress"
+        android:layout_alignTop="@id/steps_progress"
+        android:layout_alignEnd="@id/steps_progress"
+        android:layout_alignBottom="@id/steps_progress"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:indeterminate="false"
+        android:max="10"
+
+        android:paddingStart="7dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="7dp"
+        android:paddingBottom="7dp"
+        android:progress="0"
+        android:progressDrawable="@drawable/circular_progress_r" />
+
+    <ProgressBar
+        android:id="@+id/steps_progress"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="20dp"
+
+        android:layout_marginEnd="85dp"
+        android:layout_marginBottom="15dp"
+        android:indeterminate="false"
+        android:max="1000"
+        android:paddingStart="7dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="7dp"
+        android:paddingBottom="7dp"
+        android:progress="1"
+        android:progressDrawable="@drawable/circular_progress" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="85dp"
+        android:layout_height="1dp"
+        android:layout_alignStart="@+id/stepCounter"
+        android:layout_alignTop="@+id/minute_progress2"
+        android:layout_alignEnd="@+id/stepCounter"
+        android:layout_alignBottom="@+id/minute_progress2"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="124dp"
+        android:background="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/waterCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/minute_progress2"
+        android:layout_alignTop="@+id/minute_progress2"
+        android:layout_alignEnd="@+id/minute_progress2"
+        android:layout_alignBottom="@+id/minute_progress2"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="127dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="60dp"
+        android:text="10 glasses of water"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp" />
+
+    <ImageButton
+        android:id="@+id/addButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/minute_progress2"
+        android:layout_alignBottom="@+id/minute_progress2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        app:srcCompat="@drawable/ic_action_add" />
+
+    <ImageButton
+        android:id="@+id/subtractButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/minute_progress2"
+        android:layout_alignBottom="@+id/minute_progress2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="100dp"
+        app:srcCompat="@drawable/ic_action_subtract" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/minute_progress2"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="5dp"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="400dp"
+            android:layout_height="300dp"
+            android:background="@color/colorWhite"
+            android:padding="8dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:text="Sleep Timer"
+                android:textColor="@color/colorBlack"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/textView3"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="35dp"
+                app:srcCompat="@drawable/ic_action_timer" />
+
+            <ImageButton
+                android:id="@+id/startTimeBtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/textView9"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/ic_action_start_timer" />
+
+            <ImageButton
+                android:id="@+id/stopTimeBtn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/startTimeBtn"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/ic_action_stop_timer" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/startTimeBtn"
+                android:layout_alignBottom="@+id/startTimeBtn"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/startTimeBtn"
+                android:text="You slept at :"
+                android:textColor="@color/colorDarkBlue"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/stopTimeBtn"
+                android:layout_alignBottom="@+id/stopTimeBtn"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/stopTimeBtn"
+                android:text="You woke up at:"
+                android:textColor="@color/colorDarkBlue"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/startTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/startTimeBtn"
+                android:layout_alignBottom="@+id/startTimeBtn"
+                android:layout_marginStart="220dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/startTimeBtn"
+                android:text="-- : --"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/stopTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/stopTimeBtn"
+                android:layout_alignBottom="@+id/stopTimeBtn"
+                android:layout_marginStart="220sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/stopTimeBtn"
+                android:text="-- : --"
+                android:textSize="22sp" />
+
+            <ProgressBar
+                android:id="@+id/sleep_progress"
+                style="?android:progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/imageView"
+                android:layout_alignBottom="@+id/imageView"
+                android:layout_alignParentStart="true"
+
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="0dp"
+                android:indeterminate="false"
+                android:max="10"
+                android:paddingStart="7dp"
+                android:paddingTop="7dp"
+                android:paddingEnd="7dp"
+                android:paddingBottom="7dp"
+                android:progress="8"
+                android:progressTint="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="0dp"
+                android:text="8 hrs of sleep recommended"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/sleep_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView3"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="13dp"
+                android:text="You have slept for 6 hours"
+                android:textColor="@color/colorDarkBlue"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

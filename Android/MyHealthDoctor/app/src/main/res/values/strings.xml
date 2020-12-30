@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">My Health (Doctor)</string>
+    <string name="enter_name_pass">Enter a valid username and password</string>
+    <string name="user_name">Username</string>
+    <string name="pass">Password</string>
+    <string name="hint_email">Email</string>
+    <string name="no_account">Create An Account</string>
+    <string name="remember_me">Remember Me</string>
+</resources>

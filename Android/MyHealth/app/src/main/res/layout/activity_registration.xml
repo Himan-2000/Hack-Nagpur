@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_centerHorizontal="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageButton
+            android:id="@+id/contact_2"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/edit_ephone2_layout"
+            android:layout_alignBottom="@+id/edit_ephone2_layout"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_toEndOf="@+id/edit_ephone1_layout"
+            app:srcCompat="@drawable/ic_action_contact_picker" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_name_layout"
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView15"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/colorBlack"
+            app:hintTextAppearance="@style/CustomTextAppearance">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/register_head"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:backgroundTint="@color/colorBlack"
+                android:clickable="false"
+                android:hint="@string/hint_fullname"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/colorDarkBlue"
+                android:textSize="20sp"
+                app:hintTextAppearance="@style/CustomTextAppearance" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_age_layout"
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_name_layout"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/colorBlack"
+            app:hintTextAppearance="@style/CustomTextAppearance">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_age"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/register_head"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:backgroundTint="@color/colorBlack"
+                android:clickable="false"
+                android:hint="Age"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/colorDarkBlue"
+                android:textSize="20sp"
+                app:hintTextAppearance="@style/CustomTextAppearance" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_email_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_age_layout"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/colorBlack"
+            app:hintTextAppearance="@style/CustomTextAppearance">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/register_head"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:backgroundTint="@color/colorBlack"
+                android:clickable="false"
+                android:hint="@string/email_id"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/colorDarkBlue"
+                android:textSize="20sp"
+                app:hintTextAppearance="@style/CustomTextAppearance" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_upass_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_email_layout"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/colorBlack"
+            app:hintTextAppearance="@style/CustomTextAppearance"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_upass"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/register_head"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:backgroundTint="@color/colorBlack"
+                android:clickable="false"
+                android:hint="@string/pass"
+                android:inputType="textPassword"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/colorDarkBlue"
+                android:textSize="20sp"
+                app:hintTextAppearance="@style/CustomTextAppearance" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_uphone_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_upass_layout"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/colorBlack"
+            app:hintTextAppearance="@style/CustomTextAppearance">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_uphone"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/register_head"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:backgroundTint="@color/colorBlack"
+                android:clickable="false"
+                android:hint="@string/uphone"
+                android:inputType="textPassword|phone"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/colorDarkBlue"
+                android:textSize="20sp"
+                app:hintTextAppearance="@style/CustomTextAppearance" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_ephone1_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_uphone_layout"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/colorBlack"
+            app:hintTextAppearance="@style/CustomTextAppearance">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_ephone1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/register_head"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:backgroundTint="@color/colorBlack"
+                android:clickable="false"
+                android:hint="@string/ephone1"
+                android:inputType="textPassword|phone"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/colorDarkBlue"
+                android:textSize="20sp"
+                app:hintTextAppearance="@style/CustomTextAppearance" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_ephone2_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_ephone1_layout"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/colorBlack"
+            app:hintTextAppearance="@style/CustomTextAppearance">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_ephone2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/register_head"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="0dp"
+                android:backgroundTint="@color/colorBlack"
+                android:clickable="false"
+                android:hint="@string/ephone2"
+                android:inputType="textPassword|phone"
+                android:textAlignment="textStart"
+                android:textColorHint="@color/colorDarkBlue"
+                android:textSize="20sp"
+                app:hintTextAppearance="@style/CustomTextAppearance" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_ephone2_layout"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/colorDarkBlue"
+            android:text="@string/regist"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="146dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="146dp"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="22sp"
+
+            android:textStyle="bold"
+
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/save_progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_ephone2_layout"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_toStartOf="@+id/btn_save" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView12"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/notice_registration"
+            android:textAlignment="center"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/contact_1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignTop="@+id/edit_ephone1_layout"
+            android:layout_alignBottom="@+id/edit_ephone1_layout"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:layout_toEndOf="@+id/edit_ephone1_layout"
+            app:srcCompat="@drawable/ic_action_contact_picker" />
+
+    </RelativeLayout>
+
+</ScrollView>
+
+
+
+
+
+
+
+

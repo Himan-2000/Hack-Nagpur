@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/action_health"
+        android:title="Health"
+        android:icon="@drawable/ic_action_health"/>
+    <item
+        android:id="@+id/action_assist"
+        android:title="Assist"
+        android:icon="@drawable/ic_action_assist"/>
+    <item
+        android:id="@+id/action_profile"
+        android:title="Your Profile"
+        android:icon="@drawable/ic_action_profile"/>
+
+
+</menu>
